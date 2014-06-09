@@ -31,6 +31,9 @@ module.exports = function (grunt) {
       }
     },
     watch: {
+    options: {
+      livereload: true,
+    },
       js: {
         files: ['**/*.js', '!node_modules/**/*.js'],
         tasks: ['default'],
