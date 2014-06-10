@@ -1,29 +1,15 @@
-//module.exports = function () {
-//  return 'Hello, world!!';
-//};
+// index.js
+var express = require("express");
+var logfmt = require("logfmt");
+var app = express();
 
-var http = require('http');
+app.use(logfmt.requestLogger());
 
-/*https.get({ host: 'echo.jsontest.com/key/value/one/two', path: '/' }, function(res) {
-  console.log("statusCode: ", res.statusCode);
-  console.log("headers: ", res.headers);
-
-
-  res.on('data', function(d) {
-    process.stdout.write(d);
-  });
-
-
-}).on('error', function(e) {
-  console.error(e);
-});*/
-
-var s = http.createServer(function(req, res){
-  res.writeHead(200, {'content-type': 'text/plain'});
-  res.write("hello world\n");
-  console.log('woah');
-  res.end("world\n")
-
+app.get('/', function(req, res) {
+  res.send('Hello World!');
 });
 
-s.listen(8000);
+var port = Number(process.env.PORT || 5000);
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
